@@ -6,10 +6,12 @@ systém na rezerváciu miest na sedenie na semináre a prednášky
 
 #vue create PR_System
 
+
 npm install // install dependencies
 
-npm run build // run
+npm run build // run build
 
 npm run serve // run
+
 
 #npm install axios // API calls
