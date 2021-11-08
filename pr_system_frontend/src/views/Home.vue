@@ -1,7 +1,42 @@
 <template>
-  <div class="hello">
-    <t-table
-      :headers="[
+  <div class="bg-gray-900">
+    <main>
+      <header-component></header-component>
+      <section class="absolute w-full h-full bg-gray-900">
+        <!-- <header-component></header-component> -->
+        <div class="container mx-auto px-4 h-full">
+          <div class="flex content-center items-center justify-center h-full">
+            <t-table :headers="table.headers" :data="table.records">
+              <!-- <template>
+            <t-button>Example button</t-button>
+          </template> -->
+            </t-table>
+          </div>
+        </div>
+        <!-- <t-button>Example button</t-button> -->
+        <footer-component></footer-component>
+      </section>
+    </main>
+  </div>
+</template>
+
+<script>
+import HeaderComponent from '../components/Header.vue'
+import FooterComponent from '../components/Footer.vue'
+
+export default {
+  name: 'homepage',
+  props: {
+    msg: String,
+  },
+  components: {
+    // NavbarComponent,
+    HeaderComponent,
+    FooterComponent
+  },
+  data: () => ({
+    table: {
+      headers: [
         {
           value: 'name',
           text: 'Názov',
@@ -30,8 +65,8 @@
           value: 'actions',
           text: 'Akcia',
         },
-      ]"
-      :data="[
+      ],
+      records: [
         {
           id: 1,
           name: 'Zastavme globálne oteplovanie',
@@ -86,49 +121,9 @@
           organizer: 'Finax',
           type: 'Seminár',
         },
-      ]"
-    >
-      <!-- <template slot="row" slot-scope="props">
-        <tr
-          :class="[
-            props.trClass,
-            props.rowIndex % 2 === 0 ? 'bg-gray-100' : '',
-          ]"
-        >
-          <td :class="props.tdClass">
-            {{ props.row.name }}
-          </td>
-          <td :class="props.tdClass">
-            {{ props.row.place }}
-          </td>
-          <td :class="props.tdClass">
-            {{ props.row.time }}
-          </td>
-          <td :class="props.tdClass">
-            {{ props.row.speaker }}
-          </td>
-          <td :class="props.tdClass">
-            {{ props.row.organizer }}
-          </td>
-          <td :class="props.tdClass">
-            {{ props.row.time }}
-          </td>
-          <td :class="props.tdClass">
-            <t-button variant="secondary">Rezervácia</t-button>
-          </td>
-        </tr>
-      </template> -->
-    </t-table>
-    <t-button>Example button</t-button>
-  </div>
-</template>
-
-<script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String,
-  },
+      ],
+    },
+  }),
 }
 </script>
 
