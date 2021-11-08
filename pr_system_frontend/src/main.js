@@ -4,33 +4,29 @@ import router from './router'
 import VueTailwind from 'vue-tailwind'
 import './css/tailwind.css'
 
+
 import {
   TButton,
-  TTable
+  TTable,
+  TInput,
+  TInputGroup
  
 } from 'vue-tailwind/dist/components';
 
 import './assets/tailwind.css'
 
-const settings = {
+const uiComponentSettings = {
   't-button': {
     component: TButton,
     props: {
-      fixedClasses: 'block px-4 py-2 transition duration-100 ease-in-out focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed',
-      classes: 'text-white bg-blue-500 border border-transparent shadow-sm rounded hover:bg-blue-600',
-      variants: {
-        secondary: 'text-gray-800 bg-white border border-gray-300 shadow-sm hover:text-gray-600',
-        error: 'text-white bg-red-500 border border-transparent rounded shadow-sm hover:bg-red-600',
-        success: 'text-white bg-green-500 border border-transparent rounded shadow-sm hover:bg-green-600',
-        link: 'text-blue-500 underline hover:text-blue-600'
-      }
+      classes: 'bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-5 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-3 mb-1',
     }
   },
   't-table': {
     component: TTable,
     props: {
       classes: {
-        table: 'min-w-full divide-y divide-gray-100 shadow-sm border-gray-200 border',
+        table: 'min-w-full divide-y divide-gray-100 shadow-lg rounded-xl border-gray-200 bg-gray-300 border',
         thead: '',
         theadTr: '',
         theadTh: 'px-3 py-2 font-semibold text-left bg-gray-100 border-b',
@@ -48,6 +44,21 @@ const settings = {
         }
       }
     }
+  },
+  't-input': {
+    component: TInput,
+    props: {
+      classes: 'border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full'
+    },
+  },
+  't-input-group': {
+    component: TInputGroup,
+    props: {
+      fixedClasses: {
+        wrapper: '',
+        label: 'block uppercase text-gray-700 text-xs font-bold mb-2'
+      }
+    }
   }
 }
-createApp(App).use(router).use(VueTailwind, settings).mount('#app')
+createApp(App).use(router).use(VueTailwind, uiComponentSettings).mount('#app')
