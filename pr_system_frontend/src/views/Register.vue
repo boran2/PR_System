@@ -26,8 +26,39 @@
                 <div class="flex-auto px-4 lg:px-10 py-10 pt-10">
                   <form>
                     <div class="relative w-full mb-3">
+                      <t-input-group label="Meno" for="grid-password">
+                        <t-input
+                          type="name"
+                          placeholder="Meno"
+                          style="transition: all 0.15s ease 0s"
+                        />
+                      </t-input-group>
+                    </div>
+                    <div class="relative w-full mb-3">
+                      <t-input-group label="Priezvisko" for="grid-password">
+                        <t-input
+                          type="surname"
+                          placeholder="Priezvisko"
+                          style="transition: all 0.15s ease 0s"
+                        />
+                      </t-input-group>
+                    </div>
+                    <div class="relative w-full mb-3">
+                      <t-input-group
+                        label="Telefónne číslo"
+                        for="grid-password"
+                      >
+                        <t-input
+                          type="tel"
+                          placeholder="Telefónne číslo"
+                          style="transition: all 0.15s ease 0s"
+                        />
+                      </t-input-group>
+                    </div>
+                    <div class="relative w-full mb-3">
                       <t-input-group label="Email" for="grid-password">
                         <t-input
+                          class="form-control @error('email') border-red-500 @enderror"
                           type="email"
                           placeholder="Email"
                           style="transition: all 0.15s ease 0s"
@@ -35,20 +66,29 @@
                       </t-input-group>
                     </div>
                     <div class="relative w-full mb-3">
-                      <t-input-group label="Password" for="grid-password">
+                      <t-input-group label="Heslo" for="grid-password">
                         <t-input
                           type="password"
-                          placeholder="Password"
+                          placeholder="Heslo"
                           style="transition: all 0.15s ease 0s"
                         />
                       </t-input-group>
                     </div>
-                    <div class="flex items-center justify-center">
-                      <div class="mt-5 flex">
+                    <div class="relative w-full mb-3">
+                      <t-input-group label="Znovu zadajte heslo" for="grid-password">
+                        <t-input
+                          type="password"
+                          placeholder="Heslo"
+                          style="transition: all 0.15s ease 0s"
+                        />
+                      </t-input-group>
+                    </div>
+                    <div class="mt-5">
                         <router-link
-                          to="/home"
+                          to="/login"
                           style="transition: all 0.15s ease 0s"
                           class="
+                            float-right
                             bg-gray-900
                             text-white
                             active:bg-gray-700
@@ -65,33 +105,10 @@
                             mr-3
                             mb-1
                           "
-                          >Sing in</router-link
-                        >
-
-                        <router-link
-                          to="/register"
-                          style="transition: all 0.15s ease 0s"
-                          class="
-                            bg-gray-900
-                            text-white
-                            active:bg-gray-700
-                            text-sm
-                            font-bold
-                            uppercase
-                            px-5
-                            py-3
-                            rounded
-                            shadow
-                            hover:shadow-lg
-                            outline-none
-                            focus:outline-none
-                            mr-3
-                            mb-1
-                          "
-                          >Sing up</router-link
+                          >Register</router-link
                         >
                       </div>
-                    </div>
+                      
                   </form>
                 </div>
               </div>

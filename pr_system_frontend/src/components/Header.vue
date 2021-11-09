@@ -1,32 +1,107 @@
 <template>
-  <nav class="relative flex flex-wrap items-center justify-between px-2 py-3 bg-gray-900">
-    <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-      <div class="w-full relative flex justify-between lg:w-auto  px-2 lg:static lg:block lg:justify-start">
-        <a class="text-sm font-bold leading-relaxed inline-block mr-1 py-2 whitespace-nowrap uppercase text-white" href="#pablo">
-          <i class="fas fa-home-alt"></i>
-        </a>
-        <button class="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none" type="button" v-on:click="toggleNavbar()">
-          <i class="fas fa-bars"></i>
-        </button>
-      </div>
-      <div v-bind:class="{'hidden': !showMenu, 'flex': showMenu}" class="lg:flex lg:flex-grow items-center">
+  <nav
+    class="
+      relative
+      flex flex-wrap
+      items-center
+      justify-between
+      px-2
+      py-3
+      bg-gray-900
+    "
+  >
+    <div
+      class="container px-4 mx-auto flex flex-wrap items-center justify-between"
+    >
+      <div
+        v-bind:class="{ hidden: !showMenu, flex: showMenu }"
+        class="lg:flex lg:flex-grow items-center"
+      >
         <ul class="flex flex-col lg:flex-row list-none ml-auto">
-          <li class="nav-item">
-            <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="#pablo">
-              <i class="fab fa-facebook-square text-lg leading-lg text-white opacity-75" /><span class="ml-2">Share</span>
+          <!-- <li class="nav-item">
+            <a
+              class="
+                px-3
+                py-2
+                flex
+                items-center
+                text-xs
+                uppercase
+                font-bold
+                leading-snug
+                text-white
+                hover:opacity-75
+              "
+              href="#pablo"
+            >
+              <i
+                class="
+                  fab
+                  fa-facebook-square
+                  text-lg
+                  leading-lg
+                  text-white
+                  opacity-75
+                "
+              /><span class="ml-2">Share</span>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
-            <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="#pablo">
-              <i class="fab fa-twitter text-lg leading-lg text-white opacity-75" /><span class="ml-2">Tweet</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="#pablo">
-              <i class="fab fa-pinterest text-lg leading-lg text-white opacity-75" /><span class="ml-2">Pin</span>
+            <a
+              class="
+                px-3
+                py-2
+                flex
+                items-center
+                text-xs
+                uppercase
+                font-bold
+                leading-snug
+                text-white
+                hover:opacity-75
+                cursor-pointer
+              "
+            >
+              <span class="ml-2"
+                ><img
+                  @click="$refs.modal.show()"
+                  alt=" user"
+                  src="../assets/img/userWhite.svg"
+              /></span>
             </a>
           </li>
         </ul>
+        <t-modal ref="modal" class="m-auto">
+          <p class="text-center text-xl font-semibold">Chcete sa odhlasiť?</p>
+          <div class="flex mt-3 items-center justify-center">
+ 
+              <router-link
+                to="/login"
+                style="transition: all 0.15s ease 0s"
+                class="
+                  bg-gray-900
+                  text-white
+                  active:bg-gray-700
+                  text-sm
+                  font-bold
+                  uppercase
+                  px-5
+                  py-3
+                  rounded
+                  shadow
+                  hover:shadow-lg
+                  outline-none
+                  focus:outline-none
+                  mr-3
+                  mb-1
+                "
+                >Áno</router-link
+              >
+
+
+            <t-button @click="$refs.modal.hide()" type="button">Nie</t-button>
+          </div>
+        </t-modal>
       </div>
     </div>
   </nav>
@@ -34,16 +109,16 @@
 
 <script>
 export default {
-  name: "indigo-navbar",
+  name: 'indigo-navbar',
   data() {
     return {
-      showMenu: false
+      showMenu: false,
     }
   },
   methods: {
-    toggleNavbar: function(){
-      this.showMenu = !this.showMenu;
-    }
-  }
+    toggleNavbar: function () {
+      this.showMenu = !this.showMenu
+    },
+  },
 }
 </script>
