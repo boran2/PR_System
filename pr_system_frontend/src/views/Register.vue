@@ -24,13 +24,13 @@
                 "
               >
                 <div class="flex-auto px-4 lg:px-10 py-10 pt-10">
-                  <form>
                     <div class="relative w-full mb-3">
                       <t-input-group label="Meno" for="grid-password">
                         <t-input
                           type="name"
                           placeholder="Meno"
                           style="transition: all 0.15s ease 0s"
+                          id="registerNameid"
                         />
                       </t-input-group>
                     </div>
@@ -40,6 +40,7 @@
                           type="surname"
                           placeholder="Priezvisko"
                           style="transition: all 0.15s ease 0s"
+                          id="registerSurnameid"
                         />
                       </t-input-group>
                     </div>
@@ -52,16 +53,23 @@
                           type="tel"
                           placeholder="Telefónne číslo"
                           style="transition: all 0.15s ease 0s"
+                          id="Phoneid"
                         />
                       </t-input-group>
                     </div>
                     <div class="relative w-full mb-3">
                       <t-input-group label="Email" for="grid-password">
                         <t-input
-                          class="form-control @error('email') border-red-500 @enderror"
+                          class="
+                            form-control
+                            @error('email')
+                            border-red-500
+                            @enderror
+                          "
                           type="email"
                           placeholder="Email"
                           style="transition: all 0.15s ease 0s"
+                          id="registerMailid"
                         />
                       </t-input-group>
                     </div>
@@ -71,45 +79,18 @@
                           type="password"
                           placeholder="Heslo"
                           style="transition: all 0.15s ease 0s"
-                        />
-                      </t-input-group>
-                    </div>
-                    <div class="relative w-full mb-3">
-                      <t-input-group label="Znovu zadajte heslo" for="grid-password">
-                        <t-input
-                          type="password"
-                          placeholder="Heslo"
-                          style="transition: all 0.15s ease 0s"
+                          id="registerPasswordid"
                         />
                       </t-input-group>
                     </div>
                     <div class="mt-5">
-                        <router-link
-                          to="/login"
-                          style="transition: all 0.15s ease 0s"
-                          class="
-                            float-right
-                            bg-gray-900
-                            text-white
-                            active:bg-gray-700
-                            text-sm
-                            font-bold
-                            uppercase
-                            px-5
-                            py-3
-                            rounded
-                            shadow
-                            hover:shadow-lg
-                            outline-none
-                            focus:outline-none
-                            mr-3
-                            mb-1
-                          "
-                          >Register</router-link
+                      <div class="flex items-center justify-center">
+                        <t-button
+                          @click="createPerson()">
+                          Register</t-button
                         >
                       </div>
-                      
-                  </form>
+                    </div>
                 </div>
               </div>
               <div class="flex flex-wrap mt-6">
@@ -141,5 +122,41 @@ export default {
     // NavbarComponent,
     FooterComponent,
   },
+  created (){
+  //     document.getElementById('registerNameid').value = ''
+  //     document.getElementById('registerSurnameid').value = ''
+  //     document.getElementById('registerPhoneid').value = ''
+  //     document.getElementById('registerMailid').value = ''
+  //     document.getElementById('registerPasswordid').value = ''
+  },
+  methods: {
+    createPerson() {
+      // var person = {
+      //   id: this.$users.length + 1,
+      //   name: '',
+      //   surname: '',
+      //   phone: '',
+      //   mail: '',
+      //   password: '',
+      // }
+
+      // person.name = document.getElementById('registerNameid').value
+      // person.surname = document.getElementById('registerSurnameid').value
+      // person.phone = document.getElementById('registerPhoneid').value
+      // person.mail = document.getElementById('registerMailid').value
+      // person.password = document.getElementById('registerPasswordid').value
+      // for (var searchedPerson in this.$users) {
+      //   if (searchedPerson.mail === person.mail) {
+      //     return;
+      //   }
+      // }
+      // console.log(person.mail)
+      // this.$users.push(person)
+      // this.$router.push('/login');
+    },
+  },
+  data: () => ({
+    eventId: 0,
+  }),
 }
 </script>
