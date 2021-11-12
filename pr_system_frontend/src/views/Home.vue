@@ -19,7 +19,6 @@
                 {{ table.records[eventId].time }}
               </p>
               <div class="flex-auto px-2 lg:px-10 py-10 pt-10">
-                <form>
                   <div class="flex">
                     <div class="w-1/2">
                       <div class="relative w-full mb-3 mr-3">
@@ -28,6 +27,7 @@
                             type="name"
                             placeholder="Meno"
                             style="transition: all 0.15s ease 0s"
+                            id="formNameid"
                           />
                         </t-input-group>
                       </div>
@@ -39,6 +39,7 @@
                             type="surname"
                             placeholder="Priezvisko"
                             style="transition: all 0.15s ease 0s"
+                            id="formSurnameid"
                           />
                         </t-input-group>
                       </div>
@@ -55,6 +56,7 @@
                             type="tel"
                             placeholder="Telefónne číslo"
                             style="transition: all 0.15s ease 0s"
+                            id="formPhoneid"
                           />
                         </t-input-group>
                       </div>
@@ -66,19 +68,19 @@
                             type="email"
                             placeholder="Email"
                             style="transition: all 0.15s ease 0s"
+                            id="formMailid"
                           />
                         </t-input-group>
                       </div>
                     </div>
                   </div>
-                </form>
                 <!-- <hr class="mb-4 border-b-1 border-gray-700" /> -->
                 <p class="text-left text-base">Miesta na sedenie:</p>
                 <div class="mt-1 mb-6 grid grid-cols-10 gap-2">
                   <div
                     v-for="index in 50"
                     :key="index"
-                    class="py-1 px-2 rounded bg-green-300 cursor-pointer"
+                    class="py-1 px-2 rounded bg-green-300 cursor-pointer flex justify-center"
                   >
                     {{ index }}
                   </div>
@@ -122,7 +124,7 @@
                   <td :class="props.tdClass">{{ props.row.type }}</td>
                   <td :class="props.tdClass">
                     <t-button
-                      @click="$refs.modal.show((eventId = props.row.id - 1))"
+                      @click=" $refs.modal.show((eventId = props.row.id - 1)); getLogedUserdata();"
                       >open</t-button
                     >
                   </td>
@@ -141,6 +143,7 @@
 <script>
 import HeaderComponent from '../components/Header.vue'
 import FooterComponent from '../components/Footer.vue'
+import { ReservationAPI } from '@/services/api'
 
 export default {
   name: 'homepage',
@@ -149,8 +152,17 @@ export default {
     HeaderComponent,
     FooterComponent,
   },
+  created() {
+    // document.getElementById('formNameid').value = this.$logedUser.name
+    // document.getElementById('formSurnameid').value = this.$logedUser.surname
+    // document.getElementById('formPhoneid').value = this.$logedUser.phone
+    // document.getElementById('formMailid').value = this.$logedUser.mail
+    this.getLogedUser()
+    console.log(this.logedUser)
+  },
   data: () => ({
     eventId: 0,
+    logedUser: [],
     table: {
       headers: [
         '#',
@@ -220,6 +232,25 @@ export default {
       ],
     },
   }),
+  methods: {
+    getLogedUser() {
+      ReservationAPI.getLogedUser()
+        .then((res) => (this.logedUser = res.data))
+        .catch((err) => console.log(err))
+    },
+    postLogedUser(data) {
+      ReservationAPI.postLogedUser(data)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
+    },
+    getLogedUserdata() {
+      console.log(this.logedUser)
+     document.getElementById('formNameid').value = this.logedUser.name
+     document.getElementById('formSurnameid').value = this.logedUser.surname
+     document.getElementById('formPhoneid').value = this.logedUser.phone
+     document.getElementById('formMailid').value = this.logedUser.mail
+    }
+  },
 }
 </script>
 

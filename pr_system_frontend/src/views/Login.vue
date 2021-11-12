@@ -24,75 +24,42 @@
                 "
               >
                 <div class="flex-auto px-4 lg:px-10 py-10 pt-10">
-                  <form>
-                    <div class="relative w-full mb-3">
-                      <t-input-group label="Email" for="grid-password">
-                        <t-input
-                          type="email"
-                          placeholder="Email"
-                          style="transition: all 0.15s ease 0s"
-                        />
-                      </t-input-group>
+                  <div class="relative w-full mb-3">
+                    <t-input-group label="Email" for="grid-password">
+                      <t-input
+                        type="email"
+                        placeholder="Email"
+                        style="transition: all 0.15s ease 0s"
+                        id="logMailid"
+                      />
+                    </t-input-group>
+                  </div>
+                  <div class="relative w-full mb-3">
+                    <t-input-group label="Password" for="grid-password">
+                      <t-input
+                        type="password"
+                        placeholder="Password"
+                        style="transition: all 0.15s ease 0s"
+                        id="logPasswordid"
+                      />
+                    </t-input-group>
+                  </div>
+                  <div class="flex items-center justify-center">
+                    <div class="mt-5">
+                      <t-button
+                        style="transition: all 0.15s ease 0s"
+                        @click="findPerson()"
+                      >
+                        Sing in</t-button
+                      >
+                      <t-button
+                        style="transition: all 0.15s ease 0s"
+                        @click="$router.push('/register')"
+                      >
+                        Sing up</t-button
+                      >
                     </div>
-                    <div class="relative w-full mb-3">
-                      <t-input-group label="Password" for="grid-password">
-                        <t-input
-                          type="password"
-                          placeholder="Password"
-                          style="transition: all 0.15s ease 0s"
-                        />
-                      </t-input-group>
-                    </div>
-                    <div class="flex items-center justify-center">
-                      <div class="mt-5 flex">
-                        <router-link
-                          to="/home"
-                          style="transition: all 0.15s ease 0s"
-                          class="
-                            bg-gray-900
-                            text-white
-                            active:bg-gray-700
-                            text-sm
-                            font-bold
-                            uppercase
-                            px-5
-                            py-3
-                            rounded
-                            shadow
-                            hover:shadow-lg
-                            outline-none
-                            focus:outline-none
-                            mr-3
-                            mb-1
-                          "
-                          >Sing in</router-link
-                        >
-
-                        <router-link
-                          to="/register"
-                          style="transition: all 0.15s ease 0s"
-                          class="
-                            bg-gray-900
-                            text-white
-                            active:bg-gray-700
-                            text-sm
-                            font-bold
-                            uppercase
-                            px-5
-                            py-3
-                            rounded
-                            shadow
-                            hover:shadow-lg
-                            outline-none
-                            focus:outline-none
-                            mr-3
-                            mb-1
-                          "
-                          >Sing up</router-link
-                        >
-                      </div>
-                    </div>
-                  </form>
+                  </div>
                 </div>
               </div>
               <div class="flex flex-wrap mt-6">
@@ -118,11 +85,75 @@
 <script>
 // import NavbarComponent from "../components/Navbar.vue";
 import FooterComponent from '../components/Footer.vue'
+import { ReservationAPI } from '@/services/api'
+
 export default {
   name: 'login-page',
   components: {
     // NavbarComponent,
     FooterComponent,
+  },
+  data() {
+    return {
+      users: [],
+      logedUser: {},
+    }
+  },
+  created() {
+    // try {
+    //   const res = await axios.get(window.location.origin + '/data/users.json')
+    //   this.users = res.data;
+    // } catch (e) {
+    //   console.error(e);
+    // }
+    // console.log(this.users)
+
+    this.getUsers()
+  },
+  methods: {
+    getUsers() {
+      ReservationAPI.getUsers()
+        .then((res) => (this.users = res.data))
+        .catch((err) => console.log(err))
+    },
+    postLogedUser(data) {
+      ReservationAPI.postLogedUser(data)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
+    },
+    getLogedUser() {
+    },
+    findPerson() {
+      var mail = document.getElementById('logMailid').value
+      var password = document.getElementById('logPasswordid').value
+
+      for (var i = 0; i < this.users.length; i++) {
+        console.log(this.users[i].mail)
+        console.log(mail)
+
+        if (
+          this.users[i].mail === mail &&
+          this.users[i].password === password
+        ) {
+          let logedUser = {
+            id: this.users[i].id,
+            name: this.users[i].name,
+            surname: this.users[i].surname,
+            phone: this.users[i].phone,
+            mail: this.users[i].mail,
+            password: this.users[i].password,
+            places: this.users[i].places,
+          }
+          console.log(logedUser)
+          this.postLogedUser(logedUser)
+          console.log(logedUser)
+          this.$router.push('/home')
+          return
+        }
+      }
+      this.$router.push('/register')
+
+    },
   },
 }
 </script>

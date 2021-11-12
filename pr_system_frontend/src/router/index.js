@@ -22,7 +22,7 @@ const routes = [
     path: '/login',
     component: Login,
   },
-  { path: '/:pathMatch(.*)*', redirect: '/login' },
+  { path: '/', redirect: '/login' },
   {
     path: '/home',
     name: 'Home',

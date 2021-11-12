@@ -74,31 +74,12 @@
         <t-modal ref="modal" class="m-auto">
           <p class="text-center text-xl font-semibold">Chcete sa odhlasiť?</p>
           <div class="flex mt-3 items-center justify-center">
- 
-              <router-link
-                to="/login"
-                style="transition: all 0.15s ease 0s"
-                class="
-                  bg-gray-900
-                  text-white
-                  active:bg-gray-700
-                  text-sm
-                  font-bold
-                  uppercase
-                  px-5
-                  py-3
-                  rounded
-                  shadow
-                  hover:shadow-lg
-                  outline-none
-                  focus:outline-none
-                  mr-3
-                  mb-1
-                "
-                >Áno</router-link
-              >
-
-
+            <t-button
+              style="transition: all 0.15s ease 0s"
+              @click="$router.push('/login')"
+            >
+              Áno</t-button
+            >
             <t-button @click="$refs.modal.hide()" type="button">Nie</t-button>
           </div>
         </t-modal>
